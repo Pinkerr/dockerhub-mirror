@@ -1,4 +1,4 @@
-name: Docker Pull from DockerHub workflow
+name: Docker-Save-Artifact
 
 on:
   workflow_dispatch:
@@ -8,12 +8,17 @@ on:
         type: string
 
 jobs:
-  docker-pull:
+  save:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Docker pull
-      run: docker pull ${{ inputs.image }}
 
-    - name: Docker save
-      run: docker save ${{ inputs.image }} > docker-image.tar
+      - name: Pull & save image
+        run: |
+          docker pull ${{ inputs.image }}
+          docker save ${{ inputs.image }} | gzip > docker-image.tar.gz
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-image-tar
+          retention-days: 15   # 默认 90 天，可选 1-90
