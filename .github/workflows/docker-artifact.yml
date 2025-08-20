@@ -21,4 +21,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: docker-image-tar
+          path: docker-image.tar.gz
           retention-days: 15   # 默认 90 天，可选 1-90
