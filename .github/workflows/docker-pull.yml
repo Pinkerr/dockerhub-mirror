@@ -1,0 +1,16 @@
+name: Docker Pull from DockerHub workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      image:
+        required: true
+        type: string
+
+jobs:
+  docker-pull:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Docker pull
+      run: echo "docker pull ${{ inputs.image }}"
