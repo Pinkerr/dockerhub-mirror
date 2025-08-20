@@ -13,4 +13,7 @@ jobs:
 
     steps:
     - name: Docker pull
-      run: echo "docker pull ${{ inputs.image }}"
+      run: docker pull ${{ inputs.image }}"
+
+    - name: Docker save
+      run: docker save ${{ inputs.image }} > docker-image.tar
