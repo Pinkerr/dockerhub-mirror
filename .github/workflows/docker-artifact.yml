@@ -1,5 +1,5 @@
 name: Docker-Save-Artifact
-run-name: Download for ${{ inputs.image }}
+run-name: Download image ${{ inputs.image }}
 
 on:
   workflow_dispatch:
